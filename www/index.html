@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>NtzChat</title>
+      <script src="/libs/js/jquery-2.0.0.min.js"></script>			
+      <script src="/libs/js/socket.io.js"></script>
+      <script src="/js/tmpl.js"></script>		
+      <!--BOOTSTRAP-->
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+      <!-- Optional theme -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="/css/tmpl.css" >
+      <link rel="stylesheet" href="/css/chat.css" >
+   </head>
+   <body>
+      <main class="container-fluid">
+         <header class="row">
+            <h2 class="text-center">ChatNode by NTZ</h2>
+            <details class="text-center">visit www.netzulo.com</details>
+         </header>
+         <section class="row">
+             <h2 class="text-center">Soporte online</h2>             
+             <div class="round hollow text-center">
+             	<a href="#" id="addClass"><span class="glyphicon glyphicon-comment"></span>Contactar con agente</a>
+             </div>
+         </section>
+         <footer class="row">
+            <p class="text-center">Gracias por visitar | reportar bugs a : www.netzulo.com</p>
+         </footer>
+<!--CHAT-->
+         <div class="chat">            
+            <div class="popup-box chat-popup" id="qnimate">
+               <div class="popup-head">
+                  <div class="popup-head-left pull-left"><img src="http://lorempixel.com/200/200/" alt="Imagen demo"> Nombre de sala </div>
+                  <div class="popup-head-right pull-right">
+                     <div class="btn-group">
+                        <button class="chat-header-button" data-toggle="dropdown" type="button" aria-expanded="false">
+                        <i class="glyphicon glyphicon-cog"></i> </button>
+                        <ul role="menu" class="dropdown-menu pull-right">
+                           <li><a href="#">Media</a></li>
+                           <li><a href="#">Block</a></li>
+                           <li><a href="#">Clear Chat</a></li>
+                           <li><a href="#">Email Chat</a></li>
+                        </ul>
+                     </div>
+                     <button data-widget="remove" id="removeClass" class="chat-header-button pull-right" type="button"><i class="glyphicon glyphicon-off"></i></button>
+                  </div>
+               </div>
+               <div class="popup-messages">
+                  <div class="direct-chat-messages">
+                     <div class="chat-box-single-line">
+                        <abbr class="timestamp">12 de Julio de 2016</abbr>
+                     </div>
+                     <!-- Message. Default to the left -->
+                     <div class="direct-chat-msg doted-border">
+                        <div class="direct-chat-info clearfix">
+                           <span class="direct-chat-name pull-left">Cliente</span>
+                        </div>
+                        <!-- /.direct-chat-info -->
+                        <img alt="message user image" src="http://lorempixel.com/200/200/" class="direct-chat-img"><!-- /.direct-chat-img -->
+                        <div class="direct-chat-text">
+                           Buenas tardes, no puedo entrar a mi comercio
+                        </div>
+                        <div class="direct-chat-info clearfix">
+                           <span class="direct-chat-timestamp pull-right">3.36 PM</span>
+                        </div>
+                        <div class="direct-chat-info clearfix">
+                           <span class="direct-chat-img-reply-small pull-left">
+                           </span>
+                           <span class="direct-chat-reply-name">Leido</span>
+                        </div>
+                        <!-- /.direct-chat-text -->
+                     </div>
+                     <!-- /.direct-chat-msg -->
+                     
+                     <!-- Message. Default to the left -->
+                     <div class="direct-chat-msg doted-border">
+                        <div class="direct-chat-info clearfix">
+                           <span class="direct-chat-name pull-left">T&eacute;cnico</span>
+                        </div>
+                        <!-- /.direct-chat-info -->
+                        <img alt="iamgurdeeposahan" src="http://lorempixel.com/200/200/" class="direct-chat-img"><!-- /.direct-chat-img -->
+                        <div class="direct-chat-text">
+                           Buenas tardes, soy Pablo, podría facilitarme su número de comercio
+                        </div>
+                        <div class="direct-chat-info clearfix">
+                           <span class="direct-chat-timestamp pull-right">3.37 PM</span>
+                        </div>
+                        <div class="direct-chat-info clearfix">
+                           <img alt="iamgurdeeposahan" src="http://lorempixel.com/200/200/" class="direct-chat-img big-round">
+                           <span class="direct-chat-reply-name">Leido</span>
+                        </div>
+                        <!-- /.direct-chat-text -->
+                     </div>
+                     <!-- /.direct-chat-msg -->		
+
+                      <!-- Message. Default to the left -->
+                     <div class="direct-chat-msg doted-border">
+                        <div class="direct-chat-info clearfix">
+                           <span class="direct-chat-name pull-left">Cliente</span>
+                        </div>
+                        <!-- /.direct-chat-info -->
+                        <img alt="message user image" src="http://lorempixel.com/200/200/" class="direct-chat-img"><!-- /.direct-chat-img -->
+                        <div class="direct-chat-text">
+                           S&iacute; , es 12345678
+                        </div>
+                        <div class="direct-chat-info clearfix">
+                           <span class="direct-chat-timestamp pull-right">3.38 PM</span>
+                        </div>
+                        <div class="direct-chat-info clearfix">
+                           <span class="direct-chat-img-reply-small pull-left">
+                           </span>
+                           <span class="direct-chat-reply-name">Leido</span>
+                        </div>
+                        <!-- /.direct-chat-text -->
+                     </div>
+                     <!-- /.direct-chat-msg -->       
+
+ 					<!-- Message. Default to the left -->
+                     <div class="direct-chat-msg doted-border">
+                        <div class="direct-chat-info clearfix">
+                           <span class="direct-chat-name pull-left">T&eacute;cnico</span>
+                        </div>
+                        <!-- /.direct-chat-info -->
+                        <img alt="iamgurdeeposahan" src="http://lorempixel.com/200/200/" class="direct-chat-img"><!-- /.direct-chat-img -->
+                        <div class="direct-chat-text">
+                           Se ha reseteado su usuario y se ha enviado la nueva clave a su email de autorizado
+                        </div>
+                        <div class="direct-chat-info clearfix">
+                           <span class="direct-chat-timestamp pull-right">3.37 PM</span>
+                        </div>
+                        <div class="direct-chat-info clearfix">
+                           <img alt="iamgurdeeposahan" src="http://lorempixel.com/200/200/" class="direct-chat-img big-round">
+                           <span class="direct-chat-reply-name">Leido</span>
+                        </div>
+                        <!-- /.direct-chat-text -->
+                     </div>
+                     <!-- /.direct-chat-msg -->		
+
+                  </div>
+               </div>
+               <div class="popup-messages-footer">
+                  <textarea id="status_message" placeholder="Escriba su mensaje..." rows="10" cols="40" name="message"></textarea>
+                  <div class="btn-footer">
+                     <button class="bg_none"><i class="glyphicon glyphicon-earphone"></i> </button>                     
+                     <button class="bg_none"><i class="glyphicon glyphicon-paperclip"></i> </button>
+                     <button class="bg_none"><i class="glyphicon glyphicon-screenshot"></i> </button>
+
+                     <button class="bg_none pull-right"><i class="glyphicon glyphicon-send"></i> </button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </main>
+   </body>
+</html>
