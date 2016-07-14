@@ -24,20 +24,13 @@ module.exports = function Asyn(io){
 
 	var _roomsByDefault =[
 		{//TEST: cambiar por datos desde db
-			id: 1,
+			id: "room_001",
 			name: "Sala 001",
 			users:[],// asociar id socket
 			sockets:[]
 		}
 	];
-	var _agentsByDefault =[
-		{//TEST: cambiar por datos desde db
-			id: 500,
-			name: "Pablo Garcia",
-			roomsIds: []//quiza el control de ids deba ir sobre la sala solamente
-		}
-	];
-	var chat = new Chat(_roomsByDefault, _agentsByDefault);
+	var chat = new Chat(_roomsByDefault, null);
 	var definition = {
 		"sockets" : io,
 		"chat" : chat		
@@ -50,43 +43,18 @@ module.exports = function Asyn(io){
 		socket.emit('connected',{msg: "Usuario conectado"});
 
 		socket.on('contact', function (data) {
-			var _user = {
-				socketId: socket.id,
-				name: data.name,
-				type:"client",
-				cc: data.cc
-			};
-			//TODO: seleccionar sala valida			
-			var _room = {//TEST: cambiar por datos desde db
-				id: 1,
-				name: "Sala 001",
-				users:[],// asociar id socket
-				sockets:[]
-			};			
-			var assignInfo = { user: _user, room: _room };
-			//---		
-
+			var response = { msg : "Conectado a la sala "+ chat.rooms[0].name};
 			//TODO: buscar una sala valida
-			chat.rooms[0].users.push(_user);
+			chat.rooms[0].users.push({ id: "cli_001", name: data.name, cc: data.css });
 			chat.rooms[0].sockets.push(socket);
 			//Genero el canal de comunicacion privado
 			socket.join(chat.rooms[0].id);
-			socket.to(chat.rooms[0].id).emit('assigned', { msg : "conectado a la sala"+ chat.rooms[0].name});
+			//Se informa al cliente que esta conectado al nombre de sala
+			socket.broadcast.to(chat.rooms[0].id).emit('assigned', response);
 
 			//---
 			console.log("[SOCKET][contact]: %s", response.msg);			
-		});	
-		socket.on('assigned', function(data) {
-			var _assignInfo = data;
-
-			var response = {msg : "conectado a la sala"+ _room.name};
-			//---
-
-
-
-			//---
-			console.log("[SOCKET][contact]: %s", response.msg);			
-		});	
+		});			
 		//----
 		socket.on('error', function(data) {
 			console.log("[Socket.io][ERROR]: error en evento recibido| socketID: %s | host: %s", this.client.conn.id,this.client.conn.remoteAddress);

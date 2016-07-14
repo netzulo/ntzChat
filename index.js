@@ -14,11 +14,12 @@ var asyn = require('./ntz/ntz-asyn.js')(io);
 app.use('/api', wsRouter);
 app.use('/', express.static(__dirname +'/www'));//Enruta directorio publico hacia la raiz del sitio web
 app.use('/libs', express.static(__dirname +'/www/libs'));//Enruta directorio publico hacia las librerias publicas JS
-//--
 //--------------------------------------------------
 //REQUEST app
 //---- WebSite
-
+app.get('/', function(req, res) {
+	res.send("index.html");
+});
 //---- WebService
 wsRouter.get('/texts', ws.texts);
 wsRouter.get('/data', ws.data);
@@ -36,4 +37,4 @@ console.log(ws);
 console.log("-------------------------------------------------------------------------------------------------");	
 console.log("Chat functions: ");	
 console.log(asyn.chat);
-console.log("-------------------------------------------------------------------------------------------------");	
+console.log("-------------------------------------------------------------------------------------------------");

@@ -7,11 +7,16 @@ var Chat = function (io){
 		this.user = undefined || null;	
 	}
 	
-
+	//Recibe un evento indicando que se ha establecido la comunicación con el servidor
 	this.Io().on('connected', function(data) {
 		instance.logger("chat-server","connected","Se recibe evento 'connected' desde el servidor");
 		instance.logger("chat-server","connected","response: "+JSON.stringify(data));		
 	});
+	//Recibe evento indicando a que sala está asignado
+	this.Io().on('assigned', function(data) {
+		instance.logger("chat-server","assigned","Se recibe evento 'assigned' desde el servidor");
+		instance.logger("chat-server","assigned","response: "+JSON.stringify(data));	
+	})
 };
 
 //Mejorar infiriendo en un login con tokens
