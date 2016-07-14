@@ -3,9 +3,7 @@
    <head>
       <meta charset="UTF-8">
       <title>NtzChat</title>
-      <script src="/libs/js/jquery-2.0.0.min.js"></script>			
-      <script src="/libs/js/socket.io.js"></script>
-      <script src="/js/tmpl.js"></script>		
+      <script src="/libs/js/jquery-2.0.0.min.js"></script>			      
       <!--BOOTSTRAP-->
       <!-- Latest compiled and minified CSS -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -13,8 +11,14 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
       <!-- Latest compiled and minified JavaScript -->
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+      <!--OWN LIBS-->
       <link rel="stylesheet" href="/css/tmpl.css" >
       <link rel="stylesheet" href="/css/chat.css" >
+      <script src="/libs/js/socket.io.js"></script>
+      <script src="/js/chat-client.js"></script>    
+      <script src="/js/tmpl.js"></script>    
    </head>
    <body>
       <main class="container-fluid">
@@ -24,6 +28,8 @@
          </header>
          <section class="row">
              <h2 class="text-center">Soporte online</h2>             
+               <input id="txtName"class="btn btn-block  bg_none " type="text" placeholder="Nombre">
+               <input id="txtCC" class="btn btn-block bg_none" type="text" placeholder="Codigo de comercio" maxlength="8">
              <div class="round hollow text-center">
              	<a href="#" id="addClass"><span class="glyphicon glyphicon-comment"></span>Contactar con agente</a>
              </div>
@@ -150,7 +156,7 @@
                      <button class="bg_none"><i class="glyphicon glyphicon-paperclip"></i> </button>
                      <button class="bg_none"><i class="glyphicon glyphicon-screenshot"></i> </button>
 
-                     <button class="bg_none pull-right"><i class="glyphicon glyphicon-send"></i> </button>
+                     <button id="btnMsg" class="bg_none pull-right"><i class="glyphicon glyphicon-send"></i> </button>
                   </div>
                </div>
             </div>
